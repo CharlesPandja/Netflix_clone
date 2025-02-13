@@ -1,11 +1,6 @@
 import React from 'react';
-import Header from './components/Header.jsx';
 import BgNetflix from './assets/BgNetflix.jpg';
-import Home from './components/Home.jsx';
-import Popcorn from './components/Popcorn.jsx';
-import Separate from './components/Separate.jsx';
-import Tendances from './components/Tendances.jsx';
-import Modal from './components/Modal.jsx';
+import { Header, Home, Modal, Popcorn, Separate, Tendances, More } from './components/extraFiles';
 
 const App = () => {
   return (
@@ -26,6 +21,7 @@ const App = () => {
       <Popcorn />
       <Tendances />
       <Modal />
+      <More />
     </>
   );
 };

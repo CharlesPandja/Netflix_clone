@@ -5,8 +5,16 @@ const Modal = forwardRef(({ movie }, ref) => {
     const dialog = useRef(null);
 
     useImperativeHandle(ref, () => ({
-        openModal: () => dialog.current.showModal(),
-        closeModal: () => dialog.current.close(),
+        openModal: () => {
+            if (dialog.current) {
+                dialog.current.showModal();
+            }
+        },
+        closeModal: () => {
+            if (dialog.current) {
+                dialog.current.close();
+            }
+        },
     }));
 
     if (!movie) return null;
@@ -21,7 +29,7 @@ const Modal = forwardRef(({ movie }, ref) => {
             </button>
             <img
                 className="w-full h-auto mb-3"
-                src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
+                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                 alt={movie.title}
             />
             <div className="w-full">

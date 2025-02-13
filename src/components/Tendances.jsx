@@ -35,9 +35,11 @@ const Tendances = () => {
 
     function handleMovie(movie) {
         setSelectedMovie(movie);
-        if (modalRef.current) {
-            modalRef.current.openModal();
-        }
+        setTimeout(() => {
+            if (modalRef.current) {
+                modalRef.current.openModal();
+            }
+        }, 100); // Small delay to ensure state updates
     }
 
     return (
@@ -65,7 +67,6 @@ const Tendances = () => {
                     ))}
                 </div>
             )}
-
 
             <Modal ref={modalRef} movie={selectedMovie} />
         </div>
