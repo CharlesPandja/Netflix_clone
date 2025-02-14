@@ -20,7 +20,7 @@ const Modal = forwardRef(({ movie }, ref) => {
     if (!movie) return null;
 
     return (
-            <dialog ref={dialog} className="rounded-lg w-1/2 h-auto bg-black text-white relative">
+            <dialog ref={dialog} className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg w-1/2 h-full bg-black text-white relative backdrop:bg-black/60">
                 <button
                     onClick={() => dialog.current.close()}
                     className="absolute top-2 right-2 cursor-pointer text-white px-3 py-1 rounded-full hover:bg-gray-00"
