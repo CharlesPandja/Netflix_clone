@@ -11,7 +11,7 @@ const Popcorn = () => {
                         <p className=' text-white'>Profitez de notre offre avec pub, la plus économique.</p>
                     </div>
                     <div>
-                        <button className='bg-slate-600 text-white font-bold cursor-pointer px-5 py-2 rounded-lg text-base'>En savoir plus</button>
+                        <button className='bg-slate-600 text-white font-bold cursor-pointer px-5 py-2 rounded-sm text-base'>En savoir plus</button>
                     </div>
                 </div>
             </div>

@@ -62,7 +62,7 @@ const Tendances = () => {
                             key={movie.id}
                             source={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                             nomImg={movie.title}
-                            onClick={() => handleMovie(movie)}
+                            onSelect = {() => handleMovie(movie)}
                         />
                     ))}
                 </div>

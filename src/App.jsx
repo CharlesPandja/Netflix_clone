@@ -1,6 +1,7 @@
 import React from 'react';
 import BgNetflix from './assets/BgNetflix.jpg';
 import { Header, Home, Modal, Popcorn, Separate, Tendances, More } from './components/extraFiles';
+import Foire from './components/Foire';
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
       <Tendances />
       <Modal />
       <More />
+      <Foire />
     </>
   );
 };

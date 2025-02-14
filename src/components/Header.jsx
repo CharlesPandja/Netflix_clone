@@ -11,11 +11,11 @@ const Header = () => {
 
             {/* Language Selector & Sign In */}
             <div className="flex gap-4">
-                <select className="px-4 py-2 text-white rounded-lg text-base border border-gray-300 focus:outline-none">
+                <select className="px-4 py-2 text-white rounded-sm text-base border border-gray-300 focus:outline-none">
                     <option value="fr">Français</option>
                     <option value="en">English</option>
                 </select>
-                <button className="bg-red-600 text-white cursor-pointer px-5 py-2 rounded-lg text-base hover:bg-red-700 transition">
+                <button className="bg-red-600 text-white cursor-pointer px-5 py-2 rounded-sm font-bold text-base hover:bg-red-700 transition">
                     S'identifier
                 </button>
             </div>
