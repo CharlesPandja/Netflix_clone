@@ -1,7 +1,14 @@
 import React from 'react';
 import LogoNetflix from '../assets/logoNetflix.png';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
+    const navigate = useNavigate();
+
+    function handleNavigate(){
+        navigate('/login');
+    }
+
     return (
         <header className="flex justify-between items-center w-full px-30 py-2">
             {/* Logo */}
@@ -15,7 +22,7 @@ const Header = () => {
                     <option value="fr">Français</option>
                     <option value="en">English</option>
                 </select>
-                <button className="bg-red-600 text-white cursor-pointer px-5 py-2 rounded-sm font-bold text-base hover:bg-red-700 transition">
+                <button onClick={handleNavigate} className="bg-red-600 text-white cursor-pointer px-5 py-2 rounded-sm font-bold text-base hover:bg-red-700 transition">
                     S'identifier
                 </button>
             </div>

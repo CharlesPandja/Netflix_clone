@@ -5,3 +5,4 @@ export {default as Separate} from './Separate.jsx';
 export {default as Tendances} from './Tendances.jsx';
 export {default as Modal} from './Modal.jsx';
 export {default as More} from './More.jsx';
+export {default as Foire} from './Foire';
