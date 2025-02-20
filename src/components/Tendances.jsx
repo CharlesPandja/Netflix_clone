@@ -2,6 +2,10 @@ import React, { useState, useEffect, useRef } from "react";
 import Tendance from "./Tendance.jsx";
 import Modal from "./Modal.jsx";
 import { API_KEY } from "../config.js";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper/modules';
+import "swiper/css";
+import "swiper/css/navigation";
 
 const Tendances = () => {
     const [data, setData] = useState([]);
@@ -33,7 +37,8 @@ const Tendances = () => {
         fetchData();
     }, []);
 
-    function handleMovie(movie) {
+    function handleMovie(event, movie) {
+        event.preventDefault();
         setSelectedMovie(movie);
         setTimeout(() => {
             if (modalRef.current) {
@@ -56,16 +61,29 @@ const Tendances = () => {
             )}
 
             {!loading && !error && data.length > 0 && (
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                <Swiper modules={[Navigation]} navigation slidesPerView={4} spaceBetween={10} breakpoints={{
+                    640: {
+                        slidePerView: 2
+                    },
+                    768: {
+                        slidePerView: 3
+                    },
+                    1024: {
+                        slidePerView: 4
+                    }
+                }}>
                     {data.map((movie) => (
-                        <Tendance
-                            key={movie.id}
-                            source={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                            nomImg={movie.title}
-                            onSelect = {() => handleMovie(movie)}
-                        />
+                        // SwiperSlider component is used to render multiple slides at once
+                        <SwiperSlide key={movie.id}>
+                            <Tendance
+                                key={movie.id}
+                                source={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                                nomImg={movie.title}
+                                onSelect={(event) => handleMovie(event, movie)}
+                            />
+                        </SwiperSlide>
                     ))}
-                </div>
+                </Swiper>
             )}
 
             <Modal ref={modalRef} movie={selectedMovie} />
