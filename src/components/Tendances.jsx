@@ -37,8 +37,7 @@ const Tendances = () => {
         fetchData();
     }, []);
 
-    function handleMovie(event, movie) {
-        event.preventDefault();
+    function handleMovie(movie) {
         setSelectedMovie(movie);
         setTimeout(() => {
             if (modalRef.current) {
@@ -72,14 +71,14 @@ const Tendances = () => {
                         slidePerView: 4
                     }
                 }}>
-                    {data.map((movie) => (
-                        // SwiperSlider component is used to render multiple slides at once
+                    {data.map((movie, index) => (
+                        // SwiperSlide component is used to render multiple slides at once
                         <SwiperSlide key={movie.id}>
                             <Tendance
-                                key={movie.id}
+                                id={index}
                                 source={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                                 nomImg={movie.title}
-                                onSelect={(event) => handleMovie(event, movie)}
+                                onSelect={() => handleMovie(movie)}
                             />
                         </SwiperSlide>
                     ))}

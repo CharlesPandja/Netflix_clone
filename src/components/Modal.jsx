@@ -1,29 +1,31 @@
-import React, { useRef, useImperativeHandle, forwardRef } from "react";
+import React, { useState, useImperativeHandle, forwardRef } from "react";
+import { createPortal } from "react-dom";
 import Precision from "./Precision.jsx";
 
 const Modal = forwardRef(({ movie }, ref) => {
-    const dialog = useRef(null);
+    const [isOpen, setIsOpen] = useState(false);
 
     useImperativeHandle(ref, () => ({
         openModal: () => {
-            if (dialog.current) {
-                dialog.current.showModal();
-            }
+            setIsOpen(true);
         },
         closeModal: () => {
-            if (dialog.current) {
-                dialog.current.close();
-            }
+            setIsOpen(false);
         },
     }));
 
-    if (!movie) return null;
+    if (!movie || !isOpen) return null;
 
-    return (
-            <dialog ref={dialog} className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg w-1/2 h-full bg-black text-white relative backdrop:bg-black/60">
+    function handleClose() {
+        setIsOpen(false);
+    }
+
+    return createPortal(
+        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black/60 z-10">
+            <div className="relative w-1/2 max-h-[90vh] overflow-auto bg-black text-white rounded-lg">
                 <button
-                    onClick={() => dialog.current.close()}
-                    className="absolute top-2 right-2 cursor-pointer text-white px-3 py-1 rounded-full hover:bg-gray-00"
+                    onClick={handleClose}
+                    className="absolute top-2 right-2 cursor-pointer text-white px-3 py-1 rounded-full hover:bg-gray-700"
                 >
                     X
                 </button>
@@ -32,7 +34,7 @@ const Modal = forwardRef(({ movie }, ref) => {
                     src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
                     alt={movie.title}
                 />
-                <div className="w-full p-6">
+                <div className="w-full  p-6">
                     <h2 className="text-2xl font-bold mb-6">{movie.title}</h2>
                     <div className="flex gap-3 mb-6">
                         <Precision text={movie.media_type} />
@@ -44,7 +46,9 @@ const Modal = forwardRef(({ movie }, ref) => {
                         Commencer
                     </button>
                 </div>
-            </dialog>
+            </div>
+        </div>,
+        document.getElementById("modal")
     );
 });
 
