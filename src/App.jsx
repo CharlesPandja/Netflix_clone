@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {lazy, Suspense} from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Login from './pages/Login';
-import HomePage from './pages/HomePage';
+// import Login from './pages/Login';
+// import HomePage from './pages/HomePage';
 import NotFound from './pages/NotFound';
 import Root from './pages/Root';
 import Browse from './pages/Browse.jsx';
@@ -13,14 +13,18 @@ import { action as logoutAction } from './pages/Logout.jsx';
 import { checkAuth } from './util/auth.js';
 
 const App = () => {
+
+  const HomePage = lazy(() => import('./pages/HomePage'));
+  const Login = lazy(() => import('./pages/Login'));
+
   const router = createBrowserRouter([
     {
       path: '/',
       element: <ShowInterfaceContextProvider><Root /></ShowInterfaceContextProvider>,
       errorElement: <NotFound />,
       children: [
-        { path: '/', element: <HomePage /> },
-        { path: '/login', element: <Login /> },
+        { path: '/', element: <Suspense fallback={<p>Loading...</p>}><HomePage /></Suspense> },
+        { path: '/login', element: <Suspense fallback={<p>Loading...</p>}><Login /></Suspense> },
         {
           path: '/browse', element: <Browse />,
           loader : checkAuth,
