@@ -1,6 +1,7 @@
-import React, { useState, useImperativeHandle, forwardRef } from "react";
+import React, { useState, useImperativeHandle, forwardRef, useCallback, useEffect } from "react";
 import { createPortal } from "react-dom";
 import Precision from "./Precision.jsx";
+import { useNavigate } from "react-router-dom";
 
 const Modal = forwardRef(({ movie }, ref) => {
     const [isOpen, setIsOpen] = useState(false);
